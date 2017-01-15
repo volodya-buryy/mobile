@@ -6,7 +6,7 @@
 
 
 <ion-content padding>
-
-  <p>Hello request : {{allUsers}}</p>
-
+  <input #newUserMail placeholder="E-mail"/>
+  <input #newUserPass placeholder="Pass"/>
+  <button (click)="authenticate(newUserMail.value, newUserPass.value)">Add Hero</button>
 </ion-content>

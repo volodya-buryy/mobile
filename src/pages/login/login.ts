@@ -11,43 +11,25 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class LoginPage {    
     private commentsUrl = 'http://localhost:3000'; 
-    allUsers: Observable<Object[]>;
-    
+    public allUsers;
+    public user;
     constructor(private http: Http) {}
-
-    ngOnInit() {
-        // Load comments
-        this.getallUsers()
-        this.authenticate()
-    }
 
     getallUsers(){
         return this.http.get(this.commentsUrl + '/users').subscribe(res => {
-            this.allUsers = res.json();
-            console.log(res, res.json(), this.allUsers);
+            this.user = res.json();
+            console.log(res, '-->', this.user[0].firstName);
         })
-    }   
+    }
 
-    newUser(){
-        this.http.post(this.commentsUrl + '/new-user', 
-        {
-            firstName: 'Vova',
-            secondName: 'Buryy', 
-            mail:"vova.budyy@mail.com", 
-            password:"12345"
+    authenticate(mail: String, pass: String) {
+        this.http.post(this.commentsUrl + '/authenticate', 
+        { 
+            mail: mail, 
+            password: pass
         }, { } ).subscribe(res => {
             console.log(res);
         });
     }
-
-    authenticate() {
-        this.http.post(this.commentsUrl + '/authenticate', 
-        { 
-            mail:"vova.budyy@mail.com", 
-            password:"12345"
-        }, { } ).subscribe(res => {
-            console.log(res);
-        });
-    } 
 
 }
