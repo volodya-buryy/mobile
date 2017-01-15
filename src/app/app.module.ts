@@ -7,6 +7,8 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from './../pages/login/login';
+import { RegistrationPage } from './../pages/registration/registration';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { LoginPage } from './../pages/login/login';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    LoginPage
+    LoginPage,
+    RegistrationPage
   ],
   imports: [
     HttpModule,
@@ -27,7 +30,8 @@ import { LoginPage } from './../pages/login/login';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    LoginPage
+    LoginPage,
+    RegistrationPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}],
 })

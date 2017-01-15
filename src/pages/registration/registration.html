@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Hello Registration</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!--<p *ngFor="let userName of user">Hello request : {{userName.firstName}}</p>-->
+  <input #newUserName placeholder="Name"/>
+  <input #newUserSecondName placeholder="Second Name"/>
+  <input #newUserMail placeholder="E-mail"/>
+  <input #newUserPass placeholder="Pass"/>
+  <button (click)="newUser(newUserName.value, newUserSecondName.value, newUserMail.value, newUserPass.value)">Add Hero</button>
+</ion-content>
