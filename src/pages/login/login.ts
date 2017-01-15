@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,25 +10,44 @@ import 'rxjs/add/operator/catch';
 })
 @Injectable()
 export class LoginPage {    
-    private commentsUrl = 'http://localhost:3000/users'; 
-
-    constructor(private http: Http) {
-       let result = http.get(this.commentsUrl).map(response => {
-           response.json();
-           console.log('1', response);
-        });
-    }
+    private commentsUrl = 'http://localhost:3000'; 
+    allUsers: Observable<Object[]>;
+    
+    constructor(private http: Http) {}
 
     ngOnInit() {
         // Load comments
-        this.getComments()
+        this.getallUsers()
+        this.authenticate()
     }
 
-    getComments(){
-        console.log('!!!!');
-        return this.http.get(this.commentsUrl).subscribe(res => {
-            res.json();
-            console.log(res, res.json());
+    getallUsers(){
+        return this.http.get(this.commentsUrl + '/users').subscribe(res => {
+            this.allUsers = res.json();
+            console.log(res, res.json(), this.allUsers);
         })
-    }    
+    }   
+
+    newUser(){
+        this.http.post(this.commentsUrl + '/new-user', 
+        {
+            firstName: 'Vova',
+            secondName: 'Buryy', 
+            mail:"vova.budyy@mail.com", 
+            password:"12345"
+        }, { } ).subscribe(res => {
+            console.log(res);
+        });
+    }
+
+    authenticate() {
+        this.http.post(this.commentsUrl + '/authenticate', 
+        { 
+            mail:"vova.budyy@mail.com", 
+            password:"12345"
+        }, { } ).subscribe(res => {
+            console.log(res);
+        });
+    } 
+
 }
