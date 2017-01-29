@@ -1,3 +1,4 @@
+import { Users } from './../pages/main/users/users';
 import { Settings } from './../pages/main/settings/settings';
 import { Chat } from './../pages/main/chat/chat';
 import { MainPage } from './../pages/main/main';
@@ -24,7 +25,8 @@ import { RegistrationPage } from './../pages/registration/registration';
     RegistrationPage,
     MainPage,
     Chat,
-    Settings
+    Settings,
+    Users
   ],
   imports: [
     HttpModule,
@@ -41,7 +43,8 @@ import { RegistrationPage } from './../pages/registration/registration';
     RegistrationPage,
     MainPage,
     Chat,
-    Settings
+    Settings,
+    Users
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}],
 })

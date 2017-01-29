@@ -16,24 +16,24 @@
         </ion-item>
         <ion-item>
             <ion-label fixed>First Name</ion-label>
-            <ion-input type="text" value=""></ion-input>
+            <ion-input type="text" [ngModel]="user?.firstName">{{ user?.firstName}}</ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label fixed>Second Name</ion-label>
-            <ion-input type="text" value=""></ion-input>
+            <ion-input type="text" [ngModel]="user?.secondName">{{ user?.secondName}}</ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label fixed>E-mail</ion-label>
-            <ion-input type="text" value=""></ion-input>
+            <ion-input type="text" [ngModel]="user?.mail">{{ user?.mail}}</ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label fixed>Password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-input type="password" [ngModel]="user?.password">{{ user?.password}}</ion-input>
         </ion-item>
 
-        <button ion-button full>Full Button</button>
+        <button ion-button full style="position: absolute;bottom: 0;">update</button>
     </ion-list>
 </ion-content>

@@ -1,3 +1,4 @@
+import { Users } from './users/users';
 import { Settings } from './settings/settings';
 import { Chat } from './chat/chat';
 import { LoginPage } from './../login/login';
@@ -24,9 +25,10 @@ export class MainPage {
    constructor(private navigation: NavController, public menu: MenuController ) {
       //this.navigation.setRoot(MainPage);
       this.pages = [
-            { title: 'Chat', component: Chat },		
-			{ title: 'Login', component: LoginPage },
-            { title: 'Settings', component: Settings },			
+            { title: 'Chat', component: Chat },
+			{ title: 'Users', component: Users },			
+            { title: 'Settings', component: Settings },	
+			{ title: 'Logout', component: LoginPage },		
 		];
    }
    openPage(page) {
