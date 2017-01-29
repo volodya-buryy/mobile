@@ -1,3 +1,7 @@
+import { Users } from './../pages/main/users/users';
+import { Settings } from './../pages/main/settings/settings';
+import { Chat } from './../pages/main/chat/chat';
+import { MainPage } from './../pages/main/main';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -10,6 +14,7 @@ import { LoginPage } from './../pages/login/login';
 import { RegistrationPage } from './../pages/registration/registration';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -17,7 +22,11 @@ import { RegistrationPage } from './../pages/registration/registration';
     ItemDetailsPage,
     ListPage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    MainPage,
+    Chat,
+    Settings,
+    Users
   ],
   imports: [
     HttpModule,
@@ -31,7 +40,11 @@ import { RegistrationPage } from './../pages/registration/registration';
     ItemDetailsPage,
     ListPage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    MainPage,
+    Chat,
+    Settings,
+    Users
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}],
 })

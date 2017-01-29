@@ -1,3 +1,5 @@
+import { MainPage } from './../main/main';
+import { NavController } from 'ionic-angular';
 import { Component, Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +15,7 @@ export class RegistrationPage {
     private commentsUrl = 'http://localhost:3000'; 
     public allUsers;
     public user;
-    constructor(private http: Http) {}  
+    constructor(private http: Http,  private nav: NavController) {}  
 
     newUser(name: String, secondName: String, mail: String, pass: String){
         this.http.post(this.commentsUrl + '/new-user', 
@@ -22,10 +24,18 @@ export class RegistrationPage {
             secondName: secondName, 
             mail: mail, 
             password: pass
-        }, { } ).subscribe(res => {
-            this.user = res.json();
-            console.log(this.user);
-        })
+        }, { } ).subscribe(
+            (res) => {
+                this.user = res.json();
+                localStorage.setItem('token', JSON.stringify(this.user.token));
+                localStorage.setItem('_id', JSON.stringify(this.user.userId));
+                console.log(this.user);
+                this.nav.push(MainPage);
+            },
+            (err) => {
+                alert('Oops, try one more time!');
+            }
+        )
     }
 
 }

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Users</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let user of users">
+            <ion-avatar item-left>
+                <img src="../../../assets/icon/img.jpg">
+            </ion-avatar>
+            <h2>{{user.firstName}} {{user.secondName}}</h2>
+            <h3>Don't Know What To Do!</h3>
+            <p>I've had a pretty messed up day. If we just...</p>
+        </ion-item>
+    </ion-list>
+</ion-content>
