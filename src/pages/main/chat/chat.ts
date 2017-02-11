@@ -1,7 +1,8 @@
-import { NavController } from 'ionic-angular';
-import { Component, Injectable } from '@angular/core';
+import { Users } from './../users/users';
+import { NavController, NavParams } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
 import {Router} from '@angular2/router';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,22 +12,47 @@ import * as io from "socket.io-client";
   selector: 'page-hello-ionic',
   templateUrl: 'chat.html'
 })
-@Injectable()
+
 export class Chat {    
-	message = "";
+	message: string;
 	socket:any = null;
-	constructor(){
+	dialog = [];
+	public id: any;
+	private commentsUrl = 'http://localhost:3000'; 
+	private curentUser;
+	@Input() user;
+
+	constructor(params:NavParams, private http: Http){
 		this.socket = io('http://localhost:3000');
+		this.id = params.get('id');
+		console.log('--->>>>', this.id);
 	}
 	
 	ngOnInit() {
-		console.log('Socket');      
-		this.socket.emit('sendMessage', {content:'it works !'});  
-		// this.socket.on('chatUpdate', function() {
-		// 	this.socket.emit('newMessage', {
-		// 		'userName': "Hello",
-		// 		'text': "World"
-		// 	});
-		// });
+		
+		let curentId = localStorage.getItem('_id');
+	    let dialogId = this.id + curentId;
+
+        this.http.get(this.commentsUrl + '/user-info/' + curentId)
+            .map((res:Response) => res.json())
+            .subscribe(data  => {
+                this.curentUser = data;
+                console.log(this.curentUser, data );
+        })
+
+		this.socket.emit('sendMessage');
+		this.socket.emit('sendDialogId', dialogId);
+		this.socket.on('sendMessage', (msg) => {
+			if(msg.content){ 
+				console.log('this is msg --->', msg);
+				this.dialog.push(msg);
+			}
+		});
+	}
+	send(): void {
+		this.socket.emit('sendMessage', {
+			content: this.message,
+			user:  this.curentUser.firstName + this.curentUser.secondName,
+		}); 
 	}
 }

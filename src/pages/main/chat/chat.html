@@ -8,18 +8,18 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
+    <ion-card *ngFor="let msg of dialog">
         <ion-card-header>
-            Header
+            {{msg.user}}
         </ion-card-header>
         <ion-card-content>
-            The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+            {{msg.content}}
         </ion-card-content>
     </ion-card>
     
     <ion-item>
         <ion-label stacked>Message</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="message"></ion-input>
     </ion-item>
-    <button ion-button color="light">Send</button>
+    <button ion-button color="light" (click)="send()">Send</button>
 </ion-content>

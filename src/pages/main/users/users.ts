@@ -1,3 +1,5 @@
+import { Chat } from './../chat/chat';
+import { RegistrationPage } from './../../registration/registration';
 import { NavController } from 'ionic-angular';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
@@ -9,17 +11,16 @@ import 'rxjs/add/operator/catch';
   selector: 'page-hello-ionic',
   templateUrl: 'users.html'
 })
-@Injectable()
-
 
 export class Users {
     private commentsUrl = 'http://localhost:3000'; 
     public users: any;
+   
     ngOnInit(){
         this.getAllUsers();
     }
 
-    constructor(private http: Http){
+    constructor(private http: Http, private nav: NavController){
     }
 
     getAllUsers() {
@@ -30,6 +31,10 @@ export class Users {
                 console.log(this.users, data );
         })
     }
-
-   
+    goToChat(id) {
+        console.log(id);
+            this.nav.push(Chat, {
+                id: id
+            });
+    }   
 }
