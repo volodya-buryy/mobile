@@ -1,12 +1,18 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Hello Ionic</ion-title>
-  </ion-navbar>
-</ion-header>
-
-
 <ion-content padding>
-  <input #newUserMail placeholder="E-mail"/>
-  <input #newUserPass placeholder="Pass"/>
-  <button (click)="authenticate(newUserMail.value, newUserPass.value)">Add Hero</button>
+	<ion-list style="margin-top: 30vh;">
+
+		<ion-item>
+			<ion-label fixed>Mail</ion-label>
+			<ion-input #newUserMail type="text" value=""></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label fixed>Password</ion-label>
+			<ion-input #newUserPass type="password"></ion-input>
+		</ion-item>
+		<button ion-button centr color="dark" outline 
+			style="width: 100%;" (click)="authenticate(newUserMail.value, newUserPass.value)">
+			Add Hero
+		</button>
+	</ion-list>
 </ion-content>

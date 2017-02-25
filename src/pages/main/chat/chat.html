@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="height: 90vh;">
     <ion-card *ngFor="let msg of dialog">
         <ion-card-header>
             {{msg.user}}
@@ -17,9 +17,23 @@
         </ion-card-content>
     </ion-card>
     
-    <ion-item>
-        <ion-label stacked>Message</ion-label>
-        <ion-input type="text" [(ngModel)]="message"></ion-input>
-    </ion-item>
-    <button ion-button color="light" (click)="send()">Send</button>
 </ion-content>
+
+<div style="
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    width: 100%;
+    padding: 0 16px;
+    background: #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+">
+            <ion-item>
+                <ion-label stacked>Message</ion-label>
+                <ion-input type="text" [(ngModel)]="message"></ion-input>
+        </ion-item>
+            <button ion-button color="light" (click)="send()">Send</button>
+</div>

@@ -29,7 +29,7 @@ export class RegistrationPage {
                 this.user = res.json();
                 localStorage.setItem('token', JSON.stringify(this.user.token));
                 localStorage.setItem('_id', JSON.stringify(this.user.userId));
-                console.log(this.user);
+                console.log('new User', this.user);
                 this.nav.push(MainPage);
             },
             (err) => {

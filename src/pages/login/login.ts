@@ -20,6 +20,9 @@ export class LoginPage {
     constructor(private http: Http, private nav: NavController) {
         this.nav = nav;
     }
+    ngOnInit() {
+        localStorage.clear();
+    }
 
     getallUsers(){
         return this.http.get(this.commentsUrl + '/users').subscribe(res => {
@@ -36,11 +39,13 @@ export class LoginPage {
         }, { } )
         .subscribe(
             (res) => {
-                let result = res.json();
-                console.log(result);
-                localStorage.setItem('token', JSON.stringify(result.token));
-                localStorage.setItem('_id', result.userId);
-                this.nav.push(MainPage);
+                if(res.status !== 404) {
+                    let result = res.json();
+                    console.log(result);
+                    localStorage.setItem('token', JSON.stringify(result.token));
+                    localStorage.setItem('_id', JSON.stringify(result.userId));
+                    this.nav.push(MainPage);
+                }
             },
             (err) => {
                 if(err.status == 404) {

@@ -24,7 +24,8 @@ export class Users {
     }
 
     getAllUsers() {
-         this.http.get(this.commentsUrl + '/get-all-user')
+        let curentId = localStorage.getItem('_id');
+        this.http.get(this.commentsUrl + '/get-all-user/'+ curentId)
             .map((res:Response) => res.json())
             .subscribe(data  => {
                 this.users = data;

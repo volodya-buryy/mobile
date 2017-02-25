@@ -6,11 +6,31 @@
 
 
 <ion-content padding>
+  <ion-list style="margin-top: 30vh;">
 
-  <!--<p *ngFor="let userName of user">Hello request : {{userName.firstName}}</p>-->
-  <input #newUserName placeholder="Name"/>
-  <input #newUserSecondName placeholder="Second Name"/>
-  <input #newUserMail placeholder="E-mail"/>
-  <input #newUserPass placeholder="Pass"/>
-  <button (click)="newUser(newUserName.value, newUserSecondName.value, newUserMail.value, newUserPass.value)">Add Hero</button>
+		<ion-item>
+			<ion-label fixed>Name</ion-label>
+			<ion-input #newUserName type="text" value=""></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label fixed>Second Name</ion-label>
+			<ion-input #newUserSecondName type="text"></ion-input>
+		</ion-item>
+
+    <ion-item>
+			<ion-label fixed>E-mail</ion-label>
+			<ion-input #newUserMail type="email"></ion-input>
+		</ion-item>
+
+    <ion-item>
+			<ion-label fixed>Password</ion-label>
+			<ion-input #newUserPass type="password"></ion-input>
+		</ion-item>
+
+		<button ion-button centr color="dark" outline 
+      style="width: 100%;" (click)="newUser(newUserName.value, newUserSecondName.value, newUserMail.value, newUserPass.value)">
+      Add Hero
+    </button>
+	</ion-list>
 </ion-content>
